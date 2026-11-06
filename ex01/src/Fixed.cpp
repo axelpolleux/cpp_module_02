@@ -1,10 +1,21 @@
 #include<iostream>
+#include <cmath>
 #include"Fixed.hpp"
 
 Fixed::Fixed()
 {
 	std::cout << "Default constructor called" << std::endl;
 	this->_raw_bits = 0;
+}
+
+Fixed::Fixed(int input_value)
+{
+	this->_raw_bits
+}
+
+Fixed::Fixed(float input_value)
+{
+	
 }
 
 Fixed::Fixed(const Fixed& other)
@@ -18,7 +29,7 @@ Fixed& Fixed::operator=(const Fixed& other)
 	std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &other)
 	{
-		this->_raw_bits = other.getRawBits();
+		this->_raw_bits = other._raw_bits;
 	}
 	return *this;
 }
@@ -34,7 +45,23 @@ void Fixed::setRawBits(int const raw)
 	this->_raw_bits = raw;
 }
 
+float	Fixed::toFloat(void) const
+{
+	return static_cast<float>(this->_raw_bits);
+}
+
+int		Fixed::toInt(void) const
+{
+	return static_cast<int>(roundf(this->_raw_bits));
+}
+
 Fixed::~Fixed()
 {
 	std::cout << "Destructor called" << std::endl;
+}
+
+std::ostream& operator<<(std::ostream& os, const Fixed& other)
+{
+	os << other.toFloat();
+	return (os);
 }

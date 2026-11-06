@@ -4,15 +4,19 @@ class Fixed
 {
 private:
 	int					_raw_bits;
-	static int const	_frictional_bits = 8;
+	static int const	_fractional_bits = 8;
 public:
+	Fixed();
 	Fixed(int input_value);
 	Fixed(float input_value);
-	Fixed(int value, int const fractionnal);
 	Fixed(const Fixed &other);
 	Fixed &operator=(const Fixed &other);
 	~Fixed();
 
 	int		getRawBits(void) const;
 	void	setRawBits(int const raw);
+	float	toFloat(void) const;
+	int		toInt(void) const;
 };
+
+std::ostream& operator<<(std::ostream& os, const Fixed& other);
