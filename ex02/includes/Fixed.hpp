@@ -11,6 +11,16 @@ public:
 	Fixed(const float input_value);
 	Fixed(const Fixed &other);
 	Fixed &operator=(const Fixed &other);
+	Fixed &operator>(const Fixed &other);
+	Fixed &operator<(const Fixed &other);
+	Fixed &operator>=(const Fixed &other);
+	Fixed &operator<=(const Fixed &other);
+	Fixed &operator==(const Fixed &other);
+	Fixed &operator!=(const Fixed &other);
+	Fixed &operator+(const Fixed &other);
+	Fixed &operator-(const Fixed &other);
+	Fixed &operator*(const Fixed &other);
+	Fixed &operator/(const Fixed &other);
 	~Fixed();
 
 	int		getRawBits(void) const;
