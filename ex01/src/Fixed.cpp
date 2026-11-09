@@ -1,6 +1,6 @@
-#include<iostream>
+#include <iostream>
 #include <cmath>
-#include"Fixed.hpp"
+#include "Fixed.hpp"
 
 Fixed::Fixed()
 {
@@ -10,12 +10,14 @@ Fixed::Fixed()
 
 Fixed::Fixed(int input_value)
 {
-	this->_raw_bits
+	std::cout << "Int constructor called" << std::endl;
+	this->_raw_bits = input_value * (1 << _fractional_bits);
 }
 
 Fixed::Fixed(float input_value)
 {
-	
+	std::cout << "Float constructor called" << std::endl;
+	this->_raw_bits = input_value * (1 << _fractional_bits);
 }
 
 Fixed::Fixed(const Fixed& other)
@@ -47,12 +49,12 @@ void Fixed::setRawBits(int const raw)
 
 float	Fixed::toFloat(void) const
 {
-	return static_cast<float>(this->_raw_bits);
+	return ((float)this->_raw_bits / (float)(1 << _fractional_bits));
 }
 
 int		Fixed::toInt(void) const
 {
-	return static_cast<int>(roundf(this->_raw_bits));
+	return (int)(roundf(this->_raw_bits >> _fractional_bits));
 }
 
 Fixed::~Fixed()
@@ -62,6 +64,6 @@ Fixed::~Fixed()
 
 std::ostream& operator<<(std::ostream& os, const Fixed& other)
 {
-	os << other.toFloat();
+	os << (other.toFloat());
 	return (os);
 }
