@@ -54,7 +54,7 @@ float	Fixed::toFloat(void) const
 
 int		Fixed::toInt(void) const
 {
-	return (int)(roundf(this->_raw_bits >> _fractional_bits));
+	return (int)(roundf(this->_raw_bits /(int)(1 << _fractional_bits)));
 }
 
 Fixed::~Fixed()
