@@ -7,8 +7,8 @@ private:
 	static int const	_fractional_bits = 8;
 public:
 	Fixed();
-	Fixed(int input_value);
-	Fixed(float input_value);
+	Fixed(const int input_value);
+	Fixed(const float input_value);
 	Fixed(const Fixed &other);
 	Fixed &operator=(const Fixed &other);
 	~Fixed();

@@ -8,13 +8,13 @@ Fixed::Fixed()
 	this->_raw_bits = 0;
 }
 
-Fixed::Fixed(int input_value)
+Fixed::Fixed(const int input_value)
 {
 	std::cout << "Int constructor called" << std::endl;
 	this->_raw_bits = input_value * (1 << _fractional_bits);
 }
 
-Fixed::Fixed(float input_value)
+Fixed::Fixed(const float input_value)
 {
 	std::cout << "Float constructor called" << std::endl;
 	this->_raw_bits = input_value * (1 << _fractional_bits);
