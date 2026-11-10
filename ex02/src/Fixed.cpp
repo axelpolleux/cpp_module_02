@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cmath>
 #include "Fixed.hpp"
+#include "../includes/Fixed.hpp"
 
 Fixed::Fixed() : _raw_bits(0)
 {
@@ -20,7 +21,7 @@ Fixed::Fixed(const Fixed& other)
 }
 
 // operators: ex02
-Fixed &Fixed::operator=(const Fixed& other)
+Fixed	&Fixed::operator=(const Fixed& other)
 {
 	if (this != &other)
 	{
@@ -29,45 +30,100 @@ Fixed &Fixed::operator=(const Fixed& other)
 	return *this;
 }
 
-Fixed &Fixed::operator>(const Fixed &other)
+bool	Fixed::operator>(const Fixed &other)
 {
-
+	return (this->_raw_bits > other._raw_bits);
 }
 
-Fixed &Fixed::operator<(const Fixed &other)
+bool	Fixed::operator<(const Fixed &other)
 {
-
+	return (this->_raw_bits < other._raw_bits);
 }
 
-Fixed &Fixed::operator>=(const Fixed &other)
-{}
-
-Fixed &Fixed::operator<=(const Fixed &other)
-{}
-
-Fixed &Fixed::operator==(const Fixed &other)
+bool	Fixed::operator>=(const Fixed &other)
 {
-
+	return (this->_raw_bits >= other._raw_bits);
 }
-Fixed &Fixed::operator!=(const Fixed &other)
-{
 
+bool	Fixed::operator<=(const Fixed &other)
+{
+	return (this->_raw_bits <= other._raw_bits);
 }
-Fixed &Fixed::operator+(const Fixed &other)
-{
 
+bool	Fixed::operator==(const Fixed &other)
+{
+	return (this->_raw_bits == other._raw_bits);
 }
-Fixed &Fixed::operator-(const Fixed &other)
-{
 
+bool	Fixed::operator!=(const Fixed &other)
+{
+	return (this->_raw_bits != other._raw_bits);
 }
-Fixed &Fixed::operator*(const Fixed &other)
-{
 
+float	Fixed::operator+(const Fixed &other)
+{
+	return (this->toFloat() + other.toFloat());
 }
-Fixed &Fixed::operator/(const Fixed &other)
-{
 
+float	Fixed::operator-(const Fixed &other)
+{
+	return (this->toFloat() - other.toFloat());
+}
+
+float	Fixed::operator*(const Fixed &other)
+{
+	return (this->toFloat() * other.toFloat());
+}
+
+float	Fixed::operator/(const Fixed &other)
+{
+	return (this->toFloat() / other.toFloat());
+}
+
+Fixed	&Fixed::operator++(void)
+{
+	this->_raw_bits++;
+	return (*this);
+}
+
+Fixed	&Fixed::operator--(void)
+{
+	this->_raw_bits--;
+	return (*this);
+}
+
+Fixed	Fixed::operator++(int)
+{
+	Fixed	tmp = *this;
+	++this->_raw_bits;
+	return (tmp);
+}
+
+Fixed	Fixed::operator--(int)
+{
+	Fixed	tmp = *this;
+	--this->_raw_bits;
+	return (tmp);
+}
+
+Fixed	&Fixed::min(Fixed &first, Fixed &second)
+{
+	return ((first._raw_bits.toFloat < second._raw_bits.toFloat() ? first._raw_bits.toFloat : second._raw_bits.toFloat));
+}
+
+const Fixed	&Fixed::min(const Fixed &first, const Fixed &second)
+{
+	return ((first._raw_bits.toFloat < second._raw_bits.toFloat() ? first._raw_bits.toFloat : second._raw_bits.toFloat));
+}
+
+Fixed	&Fixed::max(Fixed &first, Fixed &second)
+{
+	return ((first._raw_bits.toFloat > second._raw_bits.toFloat() ? first._raw_bits.toFloat : second._raw_bits.toFloat));
+}
+
+const Fixed	&Fixed::max(const Fixed &first, const Fixed &second)
+{
+	return ((first._raw_bits.toFloat > second._raw_bits.toFloat() ? first._raw_bits.toFloat : second._raw_bits.toFloat));
 }
 
 int Fixed::getRawBits(void) const
