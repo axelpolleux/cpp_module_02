@@ -47,7 +47,6 @@ build-*/
 CMakeFiles/
 CMakeCache.txt
 cmake_install.cmake
-ex00/Makefile
 install_manifest.txt
 compile_commands.json
 
