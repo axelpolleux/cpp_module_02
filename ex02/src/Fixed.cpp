@@ -1,7 +1,6 @@
 #include <iostream>
 #include <cmath>
 #include "Fixed.hpp"
-#include "../includes/Fixed.hpp"
 
 Fixed::Fixed() : _raw_bits(0)
 {
@@ -108,22 +107,22 @@ Fixed	Fixed::operator--(int)
 
 Fixed	&Fixed::min(Fixed &first, Fixed &second)
 {
-	return ((first._raw_bits.toFloat < second._raw_bits.toFloat() ? first._raw_bits.toFloat : second._raw_bits.toFloat));
+	return ((first.toFloat() < second.toFloat()) ? first : second);
 }
 
 const Fixed	&Fixed::min(const Fixed &first, const Fixed &second)
 {
-	return ((first._raw_bits.toFloat < second._raw_bits.toFloat() ? first._raw_bits.toFloat : second._raw_bits.toFloat));
+	return ((first.toFloat() < second.toFloat()) ? first : second);
 }
 
 Fixed	&Fixed::max(Fixed &first, Fixed &second)
 {
-	return ((first._raw_bits.toFloat > second._raw_bits.toFloat() ? first._raw_bits.toFloat : second._raw_bits.toFloat));
+	return ((first.toFloat() > second.toFloat()) ? first : second);
 }
 
 const Fixed	&Fixed::max(const Fixed &first, const Fixed &second)
 {
-	return ((first._raw_bits.toFloat > second._raw_bits.toFloat() ? first._raw_bits.toFloat : second._raw_bits.toFloat));
+	return ((first.toFloat() > second.toFloat()) ? first : second);
 }
 
 int Fixed::getRawBits(void) const
